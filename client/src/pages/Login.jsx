@@ -14,11 +14,8 @@ export async function action({ request }) {
       "http://localhost:8000/api/login/",
       formData,
     );
-    console.log("printing data");
-    console.log(res.data);
     return res.data;
   } catch (error) {
-    console.log(error)
     return error.response.data;
   }
 }
@@ -53,7 +50,7 @@ export default function Login() {
             />
           </label>
           <div style={{ color: "red", margin: "20px" }}>
-            {actionData?.detail}
+            {actionData?.error}
           </div>
         </div>
         <button style={{ margin: "40px" }} type="submit">
