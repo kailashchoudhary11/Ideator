@@ -14,6 +14,7 @@ export async function action({ request }) {
       "http://localhost:8000/api/login/",
       formData,
     );
+    console.log(res.data)
     return res.data;
   } catch (error) {
     return error.response.data;
