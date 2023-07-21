@@ -1,5 +1,6 @@
-from django.contrib.auth import login, authenticate
+from .serializers import UserSerializer
 
+from django.contrib.auth import login, authenticate
 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
@@ -18,6 +19,14 @@ def endpoints(request):
   ]
   return Response(data)
 
+class RegisterUser(APIView):
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"response": "User Created"})
+        errors = dict(serializer.errors)
+        return Response({"errors": errors})
 
 class LoginUser(APIView):
     def post(self, request):
