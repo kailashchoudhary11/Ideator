@@ -1,17 +1,24 @@
 import { Form, useActionData } from "react-router-dom";
-import axios from "../utils/getAxios";
+import axios from "axios";
+import Cookies from 'js-cookie';
 
 export async function action({ request }) {
   const formData = await request.formData();
 
+  const csrftoken = Cookies.get('csrftoken');
+  axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
+  axios.defaults.withCredentials = true;
+  
   try {
     const res = await axios.post(
       "http://localhost:8000/api/login/",
       formData,
     );
+    console.log("printing data");
     console.log(res.data);
     return res.data;
   } catch (error) {
+    console.log(error)
     return error.response.data;
   }
 }
