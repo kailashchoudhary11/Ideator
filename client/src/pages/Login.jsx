@@ -1,27 +1,13 @@
-import axios from "axios";
 import { Form, useActionData } from "react-router-dom";
-import Cookies from 'js-cookie';
+import axios from "../utils/getAxios";
 
 export async function action({ request }) {
   const formData = await request.formData();
-  // axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-  // axios.defaults.xsrfCookieName = "csrftoken";
-  // const requestHeaders = {
-  //   Origin: "http://localhost:5173",
-  //   withCredentials: true,
-  // };
-
-  const csrftoken = Cookies.get('csrftoken');
-
-    // Set the CSRF token and withCredentials in the default headers
-    axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
-    axios.defaults.withCredentials = true;
 
   try {
     const res = await axios.post(
       "http://localhost:8000/api/login/",
       formData,
-      // requestHeaders,
     );
     console.log(res.data);
     return res.data;
