@@ -134,8 +134,25 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# CORS SETTINGS 
+# CORS
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
+
+
+# Rest Framework 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:5173',
+]
+
+CORS_ALLOW_CREDENTIALS = True
