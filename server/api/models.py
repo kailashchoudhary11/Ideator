@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Skill(models.Model):
   name = models.CharField(max_length=100)
-  users = models.ManyToManyField(User)
+  users = models.ManyToManyField(User, null=True, blank=True)
 
 class Theme(models.Model):
   name = models.CharField(max_length=100)
