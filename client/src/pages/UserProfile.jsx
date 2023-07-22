@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Form, useActionData, useLoaderData, useNavigation } from "react-router-dom";
+import { Form, redirect, useActionData, useLoaderData, useNavigation } from "react-router-dom";
 import Select from "react-select";
 import { useState } from "react";
 import getAxios from "../utils/getAxios";
@@ -30,6 +30,9 @@ export async function loader() {
     return { userSkills, allSkills }
 
   } catch (error) {
+    if (error.response.status === 403) {
+      return redirect("/login")
+    }
     console.log(error);
   }
   return null;
