@@ -1,4 +1,6 @@
 import './Navbar.css'
+import { Link } from 'react-router-dom';
+import img from './Ideator_1.png'
 
 export default function Navbar() {
   const handleHamburgerClick = () => {
@@ -8,7 +10,7 @@ export default function Navbar() {
   return (
     <div>
       <nav className="nav">
-        <a href="/" className="logo">Ideator</a>
+        <Link href="/" className="logo"><img src={img} alt="" /></Link>
         <div className="hamburger" onClick={handleHamburgerClick}>
           <span className="line"></span>
           <span className="line"></span>
@@ -16,10 +18,9 @@ export default function Navbar() {
         </div>
 
         <div className="nav__link hide">
-          <a href="">Home</a>
-          <a href="">About</a>
-          <a href="">SignIn</a>
-          <a href="">Contact</a>
+          <Link href='/login'>Login</Link>
+          <Link href='/register'>Register</Link>
+          <Link href='/'>Generate Idea</Link>
         </div>
       </nav>
     </div>

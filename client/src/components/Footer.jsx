@@ -1,3 +1,8 @@
+import './Footer.css'
 export default function Footer() {
-  return <div>Footer Goes Here...</div>
+  return (
+    <footer className="footer">
+      footer goes here
+    </footer>
+  )
 }
