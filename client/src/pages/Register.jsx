@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Form, useActionData } from "react-router-dom";
-import './Register.css'
+import '../styles/Register.css'
 
 export async function action({ request }) {
   const formData = await request.formData();

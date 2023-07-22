@@ -1,7 +1,7 @@
 import { Form, Link, useActionData } from "react-router-dom";
 import axios from "axios";
 import Cookies from 'js-cookie';
-import './Login.css'
+import '../styles/Login.css'
 
 export async function action({ request }) {
   const formData = await request.formData();

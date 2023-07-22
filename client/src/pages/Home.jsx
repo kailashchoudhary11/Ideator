@@ -1,9 +1,8 @@
 import axios from "axios";
 import Cookies from 'js-cookie';
-import './Home.css'
-import img from './18.png'
+import '../styles/Home.css'
+import img from '../assets/images/eclipse.png'
 import {Link} from 'react-router-dom'
-
 export async function loader() {
   try {
     const csrftoken = Cookies.get('csrftoken');
