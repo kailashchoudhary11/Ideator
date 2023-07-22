@@ -24,7 +24,7 @@ export default function Home() {
       <div className="d1">
           <h1 className="heading">Let’s build something <span>UNIQUE</span></h1>
           <p className="para">We will provide you with the most feasibly solution oriented and unique ideas for your hackathon contests. </p>
-          <Link href='/'><button className='btn'>Generate Idea</button></Link>
+          <Link to='/ideas'><button className='btn'>Explore Ideas</button></Link>
       </div>
       <div className="d2">
         <img src={img} alt="" />
