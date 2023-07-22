@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+.home{
+    background-color: #2B2A2D;
+    height: 77vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+@media screen and (min-width: 280px) and (max-width: 660px) {
+    .home{
+        height: 100vh;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .d1 {
+        width: 30%;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .d2{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width: 661px) and (max-width: 912px){
+    .home{
+        height: 100vh;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}
+
+.heading{
+    color: white;
+    font-size: 50px;
+    font-family: 'Hammersmith One', sans-serif;
+    margin-top: 6rem;
+    font-weight: 300;
+}
+.heading span{
+    color: #FCED63;
+}
+.d1 {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.d2{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.d2 img{
+    height: 60vh;
+    width: 35vw;
+}
+.para{
+    color: white;
+    font-size: 30px;
+}
+
+.btn{
+    background-color: #0B0909;
+    padding: 20px;
+    border: 0px;
+    color: #FCE941;
+    font-size: 30px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+}
