@@ -1,8 +1,12 @@
 .footer{
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #f5f5f5;
-    color: black;
-    text-align: center;
+    background-color: black;
+    text-align: left;
+    padding: 16px;
+}
+
+.footer-content{
+    display: flex;
+    justify-content: space-between;
+    color: wheat;
+    font-size: 1.2rem;
 }

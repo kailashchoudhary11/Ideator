@@ -20,7 +20,7 @@ export default function Navbar() {
         <div className="nav__link hide">
           <Link href='/login'>Login</Link>
           <Link href='/register'>Register</Link>
-          <Link href='/'>Generate Idea</Link>
+          <Link href='/'><button className='ideaBtn'>Generate Idea</button></Link>
         </div>
       </nav>
     </div>
