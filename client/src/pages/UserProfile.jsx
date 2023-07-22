@@ -84,7 +84,7 @@ export default function UserProfile() {
                   isMulti
                   name="skills"
                 />
-                <button type="submit">{userSkills.length == 0 ? "Add" : "Update"}</button>
+                <button type="submit">{navigation.state === "submitting" ? "Updating.." : "Update"}</button>
               </Form>
             </li>
         }
