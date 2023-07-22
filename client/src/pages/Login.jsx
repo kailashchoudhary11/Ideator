@@ -1,6 +1,7 @@
 import { Form, Link, redirect, useActionData, useNavigation } from "react-router-dom";
-import './Login.css'
+import '../styles/Login.css'
 import getAxios from "../utils/getAxios";
+
 
 export async function action({ request }) {
   const formData = await request.formData();

@@ -1,4 +1,4 @@
-import './Footer.css'
+import '../styles/Footer.css'
 import {BsGithub} from 'react-icons/bs'
 export default function Footer() {
   const getCurrentYear=()=>{
