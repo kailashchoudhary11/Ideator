@@ -49,6 +49,14 @@
   margin: 2rem;
 }
 
+.userData li{
+    display: flex;
+}
+
+.leftDataItem{
+    width: 15%;
+}
+
 .userData li span.dataItem {
   color: #fffef9;
 }
@@ -62,7 +70,7 @@
 .skills .skill {
   font-size: 1.5rem;
   padding: 0.2rem 0.5rem;
-  margin: 0 0.5rem;
+  margin-right: 0.5rem;
   border-radius: 5px;
   background: #0b0909;
   color: #fffef9;

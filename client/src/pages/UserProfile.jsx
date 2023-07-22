@@ -89,20 +89,20 @@ export default function UserProfile() {
         <div className="details">
           <ul className="userData">
             <li>
-              Name:{" "}
+              <span className="leftDataItem">Name:</span>{" "}
               <span className="dataItem">
                 {userData?.first_name} {userData?.last_name}
               </span>
             </li>
             <li>
-              Username: <span className="dataItem">{userData?.username}</span>
+              <span className="leftDataItem">Username:</span> <span className="dataItem">{userData?.username}</span>
             </li>
             <li>
-              Email: <span className="dataItem">{userData?.email}</span>
+            <span className="leftDataItem">Email:</span><span className="dataItem">{userData?.email}</span>
             </li>
             {!allowEdit ? (
               <li className="skills">
-                Skills:{" "}
+                <span className="leftDataItem">Skills:</span>{" "}
                 {userSkills?.map((skill, i) => (
                   <span className="skill" key={i}>
                     {skill.name}
