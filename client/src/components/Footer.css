@@ -1,0 +1,12 @@
+.footer{
+    background-color: black;
+    text-align: left;
+    padding: 16px;
+}
+
+.footer-content{
+    display: flex;
+    justify-content: space-between;
+    color: wheat;
+    font-size: 1.2rem;
+}

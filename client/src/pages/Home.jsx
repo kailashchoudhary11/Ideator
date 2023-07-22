@@ -1,6 +1,8 @@
-import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import Cookies from 'js-cookie';
+import './Home.css'
+import img from './18.png'
+import {Link} from 'react-router-dom'
 
 export async function loader() {
   try {
@@ -17,18 +19,16 @@ export async function loader() {
 }
 
 export default function Home() {
-  const data = useLoaderData()
   return (
-    <div>
-      <h1>Home Page</h1>
-      <h4>Endpoints are:</h4>
-      <ul>
-        {
-          data?.map((endpoint, i) => (
-            <li key={i}>{endpoint}</li>
-          ))
-        }
-      </ul>
+    <div className="home">
+      <div className="d1">
+          <h1 className="heading">Let’s build something <span>UNIQUE</span></h1>
+          <p className="para">We will provide you with the most feasibly solution oriented and unique ideas for your hackathon contests. </p>
+          <Link href='/'><button className='btn'>Generate Idea</button></Link>
+      </div>
+      <div className="d2">
+        <img src={img} alt="" />
+      </div>
     </div>
   )
 }
