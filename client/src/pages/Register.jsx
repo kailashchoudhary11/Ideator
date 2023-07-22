@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Form, useActionData } from "react-router-dom";
+import './Login.css'
 
 export async function action({ request }) {
   const formData = await request.formData();
@@ -27,7 +28,7 @@ export default function Register() {
 
   return (
     <div>
-      <Form method="post">
+      <Form method="post" className="form">
         <div style={{ margin: "20px" }}>
           <label style={{ margin: "20px" }} htmlFor="username">
             Username
@@ -118,9 +119,11 @@ export default function Register() {
             {actionData?.errors?.password2}
           </div>
         </div>
-        <button style={{ margin: "40px" }} type="submit">
+        <div className="btn">
+        <button type="submit">
           Register
         </button>
+        </div>
       </Form>
     </div>
   );

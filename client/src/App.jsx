@@ -7,8 +7,8 @@ import Register, {action as registerPageAction} from "./pages/Register"
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Layout />}>
     <Route element={<Home />} index loader={homePageLoader} />
-    <Route action={loginPageAction} element={<Login />} path="login" />
-    <Route action={registerPageAction} element={<Register />} path="register" />
+    <Route action={loginPageAction} element={<Login />} path="/login" />
+    <Route action={registerPageAction} element={<Register />} path="/register" />
   </Route>
 ))
 
