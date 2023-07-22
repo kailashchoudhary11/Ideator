@@ -1,6 +1,7 @@
-import { Form, redirect, useActionData, useLoaderData } from "react-router-dom";
+import { Form, redirect, useActionData, useLoaderData, useNavigation } from "react-router-dom";
 import getAxios from "../utils/getAxios";
 import Select from "react-select";
+import { useEffect, useState, useRef } from "react";
 
 export async function action({ request }) {
   const formData = await request.formData();
@@ -34,16 +35,28 @@ export async function loader() {
 
 export default function ExploreIdeas() {
 
+  const [showSearch, setShowSearch] = useState(true);
+
   const actionData = useActionData();
 
   const data = useLoaderData();
   const options = data?.map(theme => ({ value: theme.id, label: theme.name }));
 
+  const form = useRef(Form)
+  const navigation = useNavigation()
+
+  useEffect(function resetFormOnSuccess() {
+    if (navigation.state === "idle" && actionData) {
+      setShowSearch(false);
+      form.current?.reset()
+    }
+  }, [navigation.state, actionData])
+
   return (
     <div>
       {
-        !actionData
-          ? <Form method="post">
+        showSearch
+          ? <Form method="post" ref={form}>
             <Select
               options={options}
               name="theme"
@@ -54,11 +67,14 @@ export default function ExploreIdeas() {
             </div>
             <button type="submit">Find Ideas</button>
           </Form>
-          : <ul>
+          : <div>
+            <button onClick={() => {setShowSearch(true)}}>Search Again</button>
+            <ul>
               {
                 actionData?.map((idea, i) => (<li key={i}>{idea}</li>))
               }
-          </ul>
+            </ul>
+          </div>
       }
     </div>
   )

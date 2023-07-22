@@ -7,11 +7,8 @@ import getAxios from "../utils/getAxios";
 export async function action({ request }) {
   const formData = await request.formData();
   const skills = formData.getAll('skills');
-
   const axios = getAxios();
-
   const res = await axios.post("http://localhost:8000/api/profile/", { skills })
-
   return res.data;
 }
 
