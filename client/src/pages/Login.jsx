@@ -1,4 +1,4 @@
-import { Form, useActionData } from "react-router-dom";
+import { Form, Link, useActionData } from "react-router-dom";
 import axios from "axios";
 import Cookies from 'js-cookie';
 import './Login.css'
@@ -53,9 +53,7 @@ export default function Login() {
           <button id="loginbtn" type="submit">
               Log In
           </button>
-          <button id="registerbtn" type="submit">
-              Register
-          </button>
+          <Link to='/register'><button id="registerbtn" type="submit">Register</button></Link>
         </div>
       </div>
     </Form> 

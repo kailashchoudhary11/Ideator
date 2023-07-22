@@ -9,7 +9,7 @@ export default function Navbar() {
   return (
     <div>
       <nav className="nav">
-        <Link href="/" className="logo"><img src={img} alt="" /></Link>
+        <Link to="/" className="logo"><img src={img} alt="" /></Link>
         <div className="hamburger" onClick={handleHamburgerClick}>
           <span className="line"></span>
           <span className="line"></span>
@@ -17,9 +17,9 @@ export default function Navbar() {
         </div>
 
         <div className="nav__link hide">
-          <Link href='/login'>Login</Link>
-          <Link href='/register'>Register</Link>
-          <Link href='/'><button className='ideaBtn'>Generate Idea</button></Link>
+          <Link to='/login'>Login</Link>
+          <Link to='/register'>Register</Link>
+          <Link to='/'><button className='ideaBtn'>Generate Idea</button></Link>
         </div>
       </nav>
     </div>

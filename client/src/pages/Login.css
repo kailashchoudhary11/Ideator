@@ -48,11 +48,12 @@ body{
     background-color: #FCED63;
     color: #000000;
     text-align: right;
+    width: 170px;
 }
 
 #loginbtn{
     position: relative;
-    left: 40px;
+    left: 35px;
 }
 
 .formContent{
@@ -63,4 +64,5 @@ body{
 #btn{
     display: flex;
     justify-content: center;
+    width: 100%;
 }
