@@ -1,14 +1,11 @@
 import { Form, Link, useActionData } from "react-router-dom";
-import axios from "axios";
-import Cookies from 'js-cookie';
 import './Login.css'
+import getAxios from "../utils/getAxios";
 
 export async function action({ request }) {
   const formData = await request.formData();
 
-  const csrftoken = Cookies.get('csrftoken');
-  axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
-  axios.defaults.withCredentials = true;
+  const axios = getAxios()
   
   try {
     const res = await axios.post(

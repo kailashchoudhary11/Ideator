@@ -1,28 +1,23 @@
 import { useEffect, useRef } from "react";
 import { Form, useActionData, useLoaderData, useNavigation } from "react-router-dom";
-import axios from "axios";
-import Cookies from 'js-cookie';
 import Select from "react-select";
 import { useState } from "react";
+import getAxios from "../utils/getAxios";
 
-export async function action({request}) {
+export async function action({ request }) {
   const formData = await request.formData();
   const skills = formData.getAll('skills');
 
-  const csrftoken = Cookies.get('csrftoken');
-  axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
-  axios.defaults.withCredentials = true;
+  const axios = getAxios();
 
-  const res = await axios.post("http://localhost:8000/api/profile/", {skills})
-  
+  const res = await axios.post("http://localhost:8000/api/profile/", { skills })
+
   return res.data;
 }
 
 export async function loader() {
-    try {
-    const csrftoken = Cookies.get('csrftoken');
-    axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
-    axios.defaults.withCredentials = true;
+  try {
+    const axios = getAxios();
 
     const res = await axios.get("http://localhost:8000/api/profile/");
     const userSkills = res.data.skills;
@@ -46,14 +41,14 @@ export default function UserProfile() {
   const data = useLoaderData()
   const { userSkills, allSkills } = useLoaderData()
 
-  const options = allSkills.map(skill => ({value: skill.id, label: skill.name}));
-  const defaultOptions = userSkills.map(skill => ({value: skill.id, label: skill.name}));
+  const options = allSkills.map(skill => ({ value: skill.id, label: skill.name }));
+  const defaultOptions = userSkills.map(skill => ({ value: skill.id, label: skill.name }));
 
   const actionData = useActionData();
 
   const form = useRef(Form)
   const navigation = useNavigation()
-    
+
   useEffect(function resetFormOnSuccess() {
     if (navigation.state === "idle" && actionData?.success) {
       setAllowEdit(false);
@@ -71,14 +66,14 @@ export default function UserProfile() {
         {
           !allowEdit
             ? <li>
-                Skills: {userSkills?.map((skill, i) => (<span key={i}>{skill.name}</span>))} 
-                <button onClick={() => {setAllowEdit(true)}}>
-                  {userSkills.length == 0 ? "Add" : "Edit"}
-                </button>
-              </li>
+              Skills: {userSkills?.map((skill, i) => (<span key={i}>{skill.name}</span>))}
+              <button onClick={() => { setAllowEdit(true) }}>
+                {userSkills.length == 0 ? "Add" : "Edit"}
+              </button>
+            </li>
             : <li>
               <Form method="post" ref={form}>
-                <Select 
+                <Select
                   defaultValue={defaultOptions}
                   options={options}
                   isMulti
