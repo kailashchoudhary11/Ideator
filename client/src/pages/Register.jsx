@@ -37,7 +37,7 @@ export default function Register() {
               id="username"
               placeholder="Username"
             />
-            <div style={{ color: "red", margin: "20px" }}>
+            <div className="error">
               {actionData?.errors?.username}
             </div>
           </div>
@@ -49,7 +49,7 @@ export default function Register() {
               id="first_name"
               placeholder="First Name"
             />
-            <div style={{ color: "red", margin: "20px" }}>
+            <div className="error">
               {actionData?.errors?.first_name}
             </div>
           </div>
@@ -61,7 +61,7 @@ export default function Register() {
               id="last_name"
               placeholder="Last Name"
             />
-            <div style={{ color: "red", margin: "20px" }}>
+            <div className="error">
               {actionData?.errors?.last_name}
             </div>
           </div>
@@ -73,7 +73,7 @@ export default function Register() {
               id="email"
               placeholder="Email"
             />
-            <div style={{ color: "red", margin: "20px" }}>
+            <div className="error">
               {actionData?.errors?.email}
             </div>
           </div>
@@ -85,7 +85,7 @@ export default function Register() {
               id="password"
               placeholder="Password"
             />
-            <div style={{ color: "red", margin: "20px" }}>
+            <div className="error">
               {actionData?.errors?.password}
             </div>
           </div>
@@ -97,7 +97,7 @@ export default function Register() {
               id="password2"
               placeholder="Confirm Password"
             />
-            <div style={{ color: "red", margin: "20px" }}>
+            <div className="error">
               {actionData?.errors?.password2}
             </div>
           </div>
