@@ -1,0 +1,76 @@
+.profileContainer {
+  height: 100%;
+  background-color: #2b2a2d;
+  display: flex;
+  font-family: Hammersmith One;
+}
+
+.profileImg {
+  width: 35%;
+  margin: auto;
+  text-align: center;
+}
+
+.profile {
+  width: 150px;
+  height: auto;
+  margin: auto;
+}
+
+.userDetails {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.userDetails .profileText {
+  width: 50%;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.profileText h1 {
+  color: #fff;
+  font-size: 6rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.details {
+  margin: 0 0 14rem 0;
+}
+
+.userData li {
+  color: #feec64;
+  list-style: none;
+  font-size: 2rem;
+  margin: 2rem;
+}
+
+.userData li span.dataItem {
+  color: #fffef9;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.skills .skill {
+  font-size: 1.5rem;
+  padding: 0.2rem 0.5rem;
+  margin: 0 0.5rem;
+  border-radius: 5px;
+  background: #0b0909;
+  color: #fffef9;
+}
+
+.skills button {
+  margin-left: 0.5rem;
+  border: 3px solid black;
+  border-radius: .5rem;
+  background: #fff;
+  width: 3rem;
+}

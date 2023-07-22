@@ -1,6 +1,5 @@
 import { Form, Link, redirect, useActionData, useNavigation } from "react-router-dom";
 import '../styles/Login.css'
-import './Login.css'
 import getAxios from "../utils/getAxios";
 
 
