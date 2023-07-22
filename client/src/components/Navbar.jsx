@@ -3,7 +3,7 @@ import img from './Ideator_2-modified.png'
 import './Navbar.css'
 export default function Navbar() {
   const handleHamburgerClick = () => {
-    const navLink = document.querySelector('.navmentnk');
+    const navLink = document.querySelector('.nav__link');
     navLink.classList.toggle('hide');
   };
   return (

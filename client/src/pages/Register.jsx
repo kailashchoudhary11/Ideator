@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Form, useActionData } from "react-router-dom";
+import './Register.css'
 
 export async function action({ request }) {
   const formData = await request.formData();
@@ -26,11 +27,9 @@ export default function Register() {
   const actionData = useActionData();
 
   return (
-    <div>
-      <Form method="post">
-        <div style={{ margin: "20px" }}>
-          <label style={{ margin: "20px" }} htmlFor="username">
-            Username
+      <Form method="post" className="regForm">
+        <div className="regFormContent">
+          <div style={{ margin: "20px" }}>
             <input
               defaultValue={actionData?.values?.username}
               type="text"
@@ -38,14 +37,11 @@ export default function Register() {
               id="username"
               placeholder="Username"
             />
-          </label>
-          <div style={{ color: "red", margin: "20px" }}>
-            {actionData?.errors?.username}
+            <div style={{ color: "red", margin: "20px" }}>
+              {actionData?.errors?.username}
+            </div>
           </div>
-        </div>
-        <div style={{ margin: "20px" }}>
-          <label style={{ margin: "20px" }} htmlFor="first_name">
-            First Name
+          <div style={{ margin: "20px" }}>
             <input
               defaultValue={actionData?.values?.first_name}
               type="text"
@@ -53,14 +49,11 @@ export default function Register() {
               id="first_name"
               placeholder="First Name"
             />
-          </label>
-          <div style={{ color: "red", margin: "20px" }}>
-            {actionData?.errors?.first_name}
+            <div style={{ color: "red", margin: "20px" }}>
+              {actionData?.errors?.first_name}
+            </div>
           </div>
-        </div>
-        <div style={{ margin: "20px" }}>
-          <label style={{ margin: "20px" }} htmlFor="last_name">
-            Last Name
+          <div style={{ margin: "20px" }}>
             <input
               defaultValue={actionData?.values?.last_name}
               type="text"
@@ -68,14 +61,11 @@ export default function Register() {
               id="last_name"
               placeholder="Last Name"
             />
-          </label>
-          <div style={{ color: "red", margin: "20px" }}>
-            {actionData?.errors?.last_name}
+            <div style={{ color: "red", margin: "20px" }}>
+              {actionData?.errors?.last_name}
+            </div>
           </div>
-        </div>
-        <div style={{ margin: "20px" }}>
-          <label style={{ margin: "20px" }} htmlFor="email">
-            Email
+          <div style={{ margin: "20px" }}>
             <input
               defaultValue={actionData?.values?.email}
               type="email"
@@ -83,14 +73,11 @@ export default function Register() {
               id="email"
               placeholder="Email"
             />
-          </label>
-          <div style={{ color: "red", margin: "20px" }}>
-            {actionData?.errors?.email}
+            <div style={{ color: "red", margin: "20px" }}>
+              {actionData?.errors?.email}
+            </div>
           </div>
-        </div>
-        <div style={{ margin: "20px" }}>
-          <label style={{ margin: "20px" }} htmlFor="password">
-            Password
+          <div style={{ margin: "20px" }}>
             <input
               defaultValue={actionData?.values?.password}
               type="password"
@@ -98,14 +85,11 @@ export default function Register() {
               id="password"
               placeholder="Password"
             />
-          </label>
-          <div style={{ color: "red", margin: "20px" }}>
-            {actionData?.errors?.password}
+            <div style={{ color: "red", margin: "20px" }}>
+              {actionData?.errors?.password}
+            </div>
           </div>
-        </div>
-        <div style={{ margin: "20px" }}>
-          <label style={{ margin: "20px" }} htmlFor="password2">
-            Confirm Password
+          <div style={{ margin: "20px" }}>
             <input
               defaultValue={actionData?.values?.password2}
               type="password"
@@ -113,15 +97,14 @@ export default function Register() {
               id="password2"
               placeholder="Confirm Password"
             />
-          </label>
-          <div style={{ color: "red", margin: "20px" }}>
-            {actionData?.errors?.password2}
+            <div style={{ color: "red", margin: "20px" }}>
+              {actionData?.errors?.password2}
+            </div>
           </div>
+          <button type="submit">
+            Register
+          </button>
         </div>
-        <button style={{ margin: "40px" }} type="submit">
-          Register
-        </button>
       </Form>
-    </div>
   );
 }
