@@ -21,13 +21,14 @@ export async function loader() {
 
     const res = await axios.get("http://localhost:8000/api/profile/");
     const userSkills = res.data.skills;
+    const userData = res.data;
     console.log("user skills", userSkills);
 
     const allSkillsRes = await axios.get("http://localhost:8000/api/skills/");
     console.log("All skills", allSkillsRes.data);
     const allSkills = allSkillsRes.data;
 
-    return { userSkills, allSkills }
+    return { userSkills, allSkills, userData }
 
   } catch (error) {
     if (error.response.status === 403) {
@@ -41,8 +42,7 @@ export async function loader() {
 export default function UserProfile() {
   const [allowEdit, setAllowEdit] = useState(false)
 
-  const data = useLoaderData()
-  const { userSkills, allSkills } = useLoaderData()
+  const { userSkills, allSkills, userData } = useLoaderData()
 
   const options = allSkills.map(skill => ({ value: skill.id, label: skill.name }));
   const defaultOptions = userSkills.map(skill => ({ value: skill.id, label: skill.name }));
@@ -63,9 +63,9 @@ export default function UserProfile() {
     <div>
       <h1>Profile</h1>
       <ul>
-        <li>Name: {data?.first_name} {data?.last_name}</li>
-        <li>Username: {data?.username}</li>
-        <li>Email: {data?.email}</li>
+        <li>Name: {userData?.first_name} {userData?.last_name}</li>
+        <li>Username: {userData?.username}</li>
+        <li>Email: {userData?.email}</li>
         {
           !allowEdit
             ? <li>
