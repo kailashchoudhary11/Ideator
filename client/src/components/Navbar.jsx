@@ -20,7 +20,7 @@ export default function Navbar() {
           <Link to='/login'>Login</Link>
           <Link to='/register'>Register</Link>
           <Link to='/profile'>Profile</Link>
-          <Link to='/ideas'><button className='ideaBtn'>Generate Idea</button></Link>
+          <Link to='/ideas'><button className='ideaBtn'>Explore Ideas</button></Link>
         </div>
       </nav>
     </div>
