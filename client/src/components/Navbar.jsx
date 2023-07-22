@@ -1,7 +1,6 @@
+import { Link } from "react-router-dom"
+import img from './Ideator_2-modified.png'
 import './Navbar.css'
-import { Link } from 'react-router-dom';
-import img from './Ideator_1.png'
-
 export default function Navbar() {
   const handleHamburgerClick = () => {
     const navLink = document.querySelector('.nav__link');
