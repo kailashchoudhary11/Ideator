@@ -1,7 +1,6 @@
 import { Form, useActionData } from "react-router-dom";
 import axios from "axios";
 import Cookies from 'js-cookie';
-import './Login.css'
 
 export async function action({ request }) {
   const formData = await request.formData();
@@ -25,10 +24,10 @@ export async function action({ request }) {
 export default function Login() {
   const actionData = useActionData();
   return (
-    <div  className="form">
+    <div>
       <Form method="post">
         <div style={{ margin: "20px" }}>
-          <label htmlFor="username">
+          <label style={{ margin: "20px" }} htmlFor="username">
             Username
             <input
               defaultValue={actionData?.values?.username}
@@ -41,7 +40,7 @@ export default function Login() {
         </div>
 
         <div style={{ margin: "20px" }}>
-          <label htmlFor="password">
+          <label style={{ margin: "20px" }} htmlFor="password">
             Password
             <input
               defaultValue={actionData?.values?.password}
@@ -55,11 +54,9 @@ export default function Login() {
             {actionData?.error}
           </div>
         </div>
-        <div className="btn">
-          <button type="submit">
-            Log In
-          </button>
-        </div>
+        <button style={{ margin: "40px" }} type="submit">
+          Log In
+        </button>
       </Form>
     </div>
   );
