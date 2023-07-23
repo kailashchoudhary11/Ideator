@@ -88,18 +88,24 @@ export default function UserProfile() {
         </div>
         <div className="details">
           <ul className="userData">
-            <li>
-              <span className="leftDataItem">Name:</span>{" "}
-              <span className="dataItem">
-                {userData?.first_name} {userData?.last_name}
-              </span>
-            </li>
-            <li>
-              <span className="leftDataItem">Username:</span> <span className="dataItem">{userData?.username}</span>
-            </li>
-            <li>
-            <span className="leftDataItem">Email:</span><span className="dataItem">{userData?.email}</span>
-            </li>
+            {userData?.first_name &&
+              <li>
+                <span className="leftDataItem">Name:</span>{" "}
+                <span className="dataItem">
+                  {userData?.first_name} {userData?.last_name}
+                </span>
+              </li>
+            }
+            {userData?.username &&
+              <li>
+                <span className="leftDataItem">Username:</span> <span className="dataItem">{userData?.username}</span>
+              </li>
+            }
+            { userData?.email &&
+              <li>
+                <span className="leftDataItem">Email:</span><span className="dataItem">{userData?.email}</span>
+              </li>
+            }
             {!allowEdit ? (
               <li className="skills">
                 <span className="leftDataItem">Skills:</span>{" "}
@@ -113,7 +119,7 @@ export default function UserProfile() {
                     setAllowEdit(true);
                   }}
                 >
-                  <FaEdit/>
+                  <FaEdit />
                 </button>
               </li>
             ) : (
@@ -125,6 +131,7 @@ export default function UserProfile() {
                     options={options}
                     isMulti
                     name="skills"
+                    className="select-skills"
                   />
                   <button className="updateBtn"
                     disabled={
@@ -134,7 +141,7 @@ export default function UserProfile() {
                     type="submit"
                   >
                     {navigation.state === "submitting" ||
-                    navigation.state === "loading"
+                      navigation.state === "loading"
                       ? "Updating.."
                       : "Update"}
                   </button>
