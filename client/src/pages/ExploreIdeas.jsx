@@ -1,19 +1,74 @@
-import { Form, redirect, useActionData, useLoaderData, useNavigation } from "react-router-dom";
+import { Form, redirect, useActionData, useLoaderData } from "react-router-dom";
 import getAxios from "../utils/getAxios";
 import Select from "react-select";
-import { useEffect, useState, useRef } from "react";
+import { Configuration, OpenAIApi } from "openai";
+import { useState } from "react";
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
 
 export async function action({ request }) {
   const formData = await request.formData();
   const theme = formData.get("theme");
   const includeSkills = formData.get("skills") === "on" ? true : false;
 
+  // gets users skills
   const axios = getAxios();
+  const res1 = await axios.get("http://localhost:8000/api/profile/");
+  const userSkills = res1.data.skills;
+
+  // old approach - remove once ai is implemented
   const data = { theme, includeSkills };
   const res = await axios.post("http://localhost:8000/api/ideas/", data);
-  console.log(res.data);
 
-  return res.data;
+  // formatting data
+  let themesList = ["WEB3", "Cyber Security", "IOT", "Machine Learning", "VR"];
+  let content1;
+  let content2;
+
+  let usersSkillsList = [];
+  userSkills.map((element) => {
+    usersSkillsList.push(element.name);
+  });
+
+  if (includeSkills) {
+    content1 =
+      "You will be provided with a list of skills and themes, and your task is to generate hackathon project ideas based off of this. ";
+    content2 = `Dev skills: ${usersSkillsList} & theme: ${
+      themesList[theme - 1]
+    }`;
+  } else {
+    content1 =
+      "You will be provided with a theme, and your task is to generate hackathon project ideas related to that theme.";
+    content2 = `Dev skills: ${usersSkillsList} & theme: ${
+      themesList[theme - 1]
+    }`;
+  }
+
+  const response = await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: [
+      {
+        role: "system",
+        content: content1,
+      },
+      {
+        role: "user",
+        content: content2,
+      },
+    ],
+    temperature: 0.8,
+    max_tokens: 256,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+  });
+
+  console.log(response.data.choices[0].message.content);
+
+  return response.data.choices[0].message.content;
 }
 
 export async function loader() {
@@ -23,10 +78,9 @@ export async function loader() {
     const res = await axios.get("http://localhost:8000/api/themes/");
     console.log("All themes", res.data);
     return res.data;
-
   } catch (error) {
     if (error.response.status === 403) {
-      return redirect("/login")
+      return redirect("/login");
     }
     console.log(error);
   }
@@ -34,48 +88,28 @@ export async function loader() {
 }
 
 export default function ExploreIdeas() {
-
-  const [showSearch, setShowSearch] = useState(true);
-
   const actionData = useActionData();
 
   const data = useLoaderData();
-  const options = data?.map(theme => ({ value: theme.id, label: theme.name }));
-
-  const form = useRef(Form)
-  const navigation = useNavigation()
-
-  useEffect(function resetFormOnSuccess() {
-    if (navigation.state === "idle" && actionData) {
-      setShowSearch(false);
-      form.current?.reset()
-    }
-  }, [navigation.state, actionData])
+  const options = data?.map((theme) => ({
+    value: theme.id,
+    label: theme.name,
+  }));
 
   return (
     <div>
-      {
-        showSearch
-          ? <Form method="post" ref={form}>
-            <Select
-              options={options}
-              name="theme"
-            />
-            <div>
-              <input type="checkbox" name="skills" id="skills" />
-              <label htmlFor="skills">Provide Idea based on my skills</label>
-            </div>
-            <button type="submit">Find Ideas</button>
-          </Form>
-          : <div>
-            <button onClick={() => {setShowSearch(true)}}>Search Again</button>
-            <ul>
-              {
-                actionData?.map((idea, i) => (<li key={i}>{idea}</li>))
-              }
-            </ul>
+      {!actionData ? (
+        <Form method="post">
+          <Select options={options} name="theme" />
+          <div>
+            <input type="checkbox" name="skills" id="skills" />
+            <label htmlFor="skills">Provide Idea based on my skills</label>
           </div>
-      }
+          <button type="submit">Find Ideas</button>
+        </Form>
+      ) : (
+        <h1>{actionData}</h1>
+      )}
     </div>
-  )
+  );
 }
