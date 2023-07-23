@@ -1,7 +1,7 @@
 from .models import Skill, Theme, Idea
 from .serializers import UserSerializer, SkillSerializer, ThemeSerializer, IdeaSerializer
 
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
@@ -41,6 +41,11 @@ class LoginUser(APIView):
       return Response({"message": "Logged in successfully"})
 
     return Response({"error": "Invalid Credentials"}, status=status.HTTP_400_BAD_REQUEST)
+
+class LogoutUser(APIView):
+  def post(self, request):
+    logout(request)
+    return Response({"success": "Logged out successfully"})
 
 class UserProfile(APIView):
   permission_classes = [IsAuthenticated]
@@ -83,6 +88,10 @@ class SkillsView(APIView):
     skills = Skill.objects.all()
     serializer = SkillSerializer(skills, many=True)
     return Response(serializer.data)
+  
+class CheckAuth(APIView):
+  def get(self, request):
+    return Response({"isAuthenticated": request.user.is_authenticated})
 
 class ThemesView(APIView):
   permission_classes = [IsAuthenticated]
