@@ -29,41 +29,31 @@ export async function action({ request }) {
     content2 = `Theme: ${theme}`;
   }
 
-  // const openai = getOpenAi();
+  const openai = getOpenAi();
 
-  //   const response = await openai.createChatCompletion({
-  //     model: "gpt-3.5-turbo",
-  //     messages: [
-  //       {
-  //         role: "system",
-  //         content: content1,
-  //       },
-  //       {
-  //         role: "user",
-  //         content: content2,
-  //       },
-  //     ],
-  //     temperature: 0.8,
-  //     max_tokens: 256,
-  //     top_p: 1,
-  //     frequency_penalty: 0,
-  //     presence_penalty: 0,
-  //   });
+    const response = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content: content1,
+        },
+        {
+          role: "user",
+          content: content2,
+        },
+      ],
+      temperature: 0.8,
+      max_tokens: 256,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+    });
 
-  //   console.log(response.data)
-  //   console.log(response.data.choices[0].message.content);
-  //   return response.data.choices[0].message.content;
-  // }
-
-  return `1. Smart Gardener: Develop a machine learning-based system that analyzes environmental factors such as soil moisture, temperature, and sunlight to provide personalized recommendations for optimal plant care.
-
-2. AI Fashion Stylist: Create a machine learning model that can analyze fashion trends, individual preferences, and body types to suggest personalized outfit combinations and styling advice.
-
-3. HealthBot: Build a chatbot powered by machine learning algorithms that can provide personalized health recommendations based on user input, medical history, and lifestyle data.
-
-4. Music Mood Analyzer: Develop a machine learning model that can analyze music tracks and classify them based on the emotions they evoke, allowing users to create personalized playlists for different moods.
-`;
-}
+    console.log(response.data)
+    console.log(response.data.choices[0].message.content);
+    return response.data.choices[0].message.content;
+  }
 
 export default function ExploreIdeas() {
   const actionData = useActionData();
