@@ -1,5 +1,5 @@
-from .models import Skill
-from .serializers import UserSerializer, SkillSerializer
+from .models import Skill, Theme, Idea
+from .serializers import UserSerializer, SkillSerializer, ThemeSerializer, IdeaSerializer
 
 from django.contrib.auth import login, authenticate, logout
 
@@ -68,7 +68,6 @@ class UserProfile(APIView):
     request.user.skill_set.clear()
 
     skill_ids = request.data.get('skills')
-    print(skill_ids)
     skills = []
     for skill_id in skill_ids:
       if skill_id == '': continue
@@ -83,7 +82,6 @@ class UserProfile(APIView):
     return Response({"success": "Skills Added"})
   
 class SkillsView(APIView):
-  
   permission_classes = [IsAuthenticated]
 
   def get(self, request):
@@ -94,3 +92,36 @@ class SkillsView(APIView):
 class CheckAuth(APIView):
   def get(self, request):
     return Response({"isAuthenticated": request.user.is_authenticated})
+
+class ThemesView(APIView):
+  permission_classes = [IsAuthenticated]
+
+  def get(self, request):
+    skills = Theme.objects.all()
+    serializer = ThemeSerializer(skills, many=True)
+    return Response(serializer.data)
+
+class IdeasView(APIView):
+  
+  permission_classes = [IsAuthenticated]
+
+  def post(self, request):
+    theme_id = request.data.get("theme")
+    include_skills = request.data.get("includeSkills")
+    ideas = []
+
+    if include_skills:
+      user_skills = request.user.skill_set.all();
+      for skill in user_skills:
+        serializer = IdeaSerializer(skill.idea_set, many=True)
+        ideas.extend(serializer.data)
+    try:
+      theme = Theme.objects.get(id=int(theme_id))
+      serializer = IdeaSerializer(theme.idea_set, many=True)
+      ideas.extend(serializer.data)
+    except Exception as e:
+      pass
+    
+    ideas = {item["idea"] for item in ideas}
+
+    return Response(ideas)

@@ -44,18 +44,17 @@ export default function Navbar() {
         </div>
 
         <div className="nav__link hide">
-          <NavLink to='/'><button className='ideaBtn'>Generate Idea</button></NavLink>
+          <NavLink to='/ideas'><button className='ideaBtn'>Explore Ideas</button></NavLink>
           {!isAuthenticated
             ? <>
-              <NavLink style={({isActive}) => isActive ? {"color": "blue"} : {}} to='/login'>Login</NavLink>
-              <NavLink style={({isActive}) => isActive ? {"color": "blue"} : {}} to='/register'>Register</NavLink>
+              <NavLink style={({ isActive }) => isActive ? { "color": "blue" } : {}} to='/login'>Login</NavLink>
+              <NavLink style={({ isActive }) => isActive ? { "color": "blue" } : {}} to='/register'>Register</NavLink>
             </>
             : <>
-              <NavLink style={({isActive}) => isActive ? {"color": "blue"} : {}} to='/profile'>Profile</NavLink>
+              <NavLink style={({ isActive }) => isActive ? { "color": "blue" } : {}} to='/profile'>Profile</NavLink>
               <button className="nav-item" onClick={logoutUser}>Logout</button>
             </>
           }
-          
         </div>
       </nav>
     </div>
