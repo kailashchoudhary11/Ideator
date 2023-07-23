@@ -1,4 +1,4 @@
-from .models import Skill
+from .models import Skill, Theme, Idea
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
@@ -38,4 +38,14 @@ class UserSerializer(serializers.ModelSerializer):
 class SkillSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Skill
+		fields = "__all__"
+
+class ThemeSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Theme
+		fields = "__all__"
+
+class IdeaSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Idea
 		fields = "__all__"

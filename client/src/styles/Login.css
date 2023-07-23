@@ -1,68 +1,80 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
-body{
-    background-color: #2B2A2D;
+@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
+body {
+  background-color: #2b2a2d;
+}
+
 .form {
-  background: #D9D9D9;
-  max-width: 450px;
-  margin: 0 auto 100px;
-  padding: 45px;
+  margin: 1rem auto;
+  padding: 1rem;
+  background: #d9d9d9;
+  border: 2px solid #fce941;
+  border-radius: 1rem;
+  box-shadow: 0 0 4px 3px #000 inset;
   text-align: center;
-  height: 64.5vh;
-  align-items: center;
-  position: relative;
-  top: 50px;
-  border-radius: 20px;
+  height: 50%;
 }
+
 .form input {
-  font-family: "Roboto", sans-serif;
-  background: #D9D9D9;
+  color: #6d6d6d;
+  background: #d9d9d9;
+  border: none;
+  border-bottom: 2px solid #000000;
+  font-family: Jost;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  /* 
   width: 100%;
   border: 0;
-  border-bottom: 4px solid #000000;
+  
   margin: 0 0 15px;
-  padding: 15px;
-  box-sizing: border-box;
-  font-size: 18px;
+  padding: 15px; */
 }
 
 .form input::-webkit-input-placeholder {
-    color: #5f5f5f;
+  color: #5f5f5f;
 }
 
 .form button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background-color: #0B0909;
+  background-color: #0b0909;
   width: 50%;
   border: 0;
   border-radius: 30px;
   padding: 15px;
-  color: #D9D9D9;
+  color: #d9d9d9;
   font-size: 25px;
   cursor: pointer;
 }
 
-#registerbtn{
-    background-color: #FCED63;
-    color: #000000;
-    text-align: right;
-    width: 170px;
+#registerbtn {
+  background-color: #fced63;
+  color: #000000;
+  text-align: right;
+  width: 170px;
 }
 
-#loginbtn{
-    position: relative;
-    left: 35px;
+#loginbtn {
+  position: relative;
+  left: 35px;
 }
 
-.formContent{
-    position: relative;
-    top:80px;
+.formContent {
+  position: relative;
+  top: 80px;
 }
 
-#btn{
-    display: flex;
-    justify-content: center;
-    width: 100%;
+#btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }

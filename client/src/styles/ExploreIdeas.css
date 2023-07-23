@@ -1,0 +1,114 @@
+.projectIdeaForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 4rem;
+  margin: 1rem;
+}
+
+.projectIdeaForm > div {
+  margin: 0.2rem;
+  width: 100%;
+}
+
+.titleHeading {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.titleHeading h1 {
+  color: #fff;
+  font-family: Hammersmith One;
+  font-size: 4rem;
+  font-weight: 100;
+}
+
+.tagline {
+  text-align: center;
+}
+
+.tagline h3 {
+  color: #feec64;
+  font-family: Jost;
+  font-size: 2rem;
+  letter-spacing: 2px;
+}
+
+.theme {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.theme > div {
+  margin: 0 1rem;
+}
+
+.theme input[type="checkbox"] {
+  margin-right: 1rem;
+}
+
+.theme > div > label {
+  color: #d9d9d9;
+  font-family: Jost;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.theme #theme,
+.ideaSubmitBtn {
+  font-family: Jost;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  padding: 0 1rem;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+
+.ideaSubmitBtn {
+  background-color: #000;
+  width: 100%;
+  color: #feec64;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardContainer h1,
+.cardContainer ul {
+  margin: 0.3rem;
+}
+
+.cardContainer h1 {
+  text-align: center;
+  color: #feec64;
+  font-family: Jost;
+  letter-spacing: 2px;
+  margin: .7rem;
+}
+
+.cardContainer ul {
+  display: flex;
+}
+
+.cardContainer > ul > div {
+  margin: 0 4rem;
+  border-radius: 8px;
+  background: #d9d9d9;
+  box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cardContainer li {
+padding: 1rem;
+  list-style: none;
+  color: #000;
+  font-family: Jost;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1.8px;
+}
