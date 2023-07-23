@@ -85,15 +85,6 @@ a {
 .logo {
     padding-left: 20px;
 }
-.ideaBtn {
-    background-color: #0b0909;
-    border-radius: 10px;
-    height: 43px;
-    width: 272px;
-    color: #fce941;
-    font-size: 30px;
-    text-transform: uppercase;
-}
 
 .nav-item {
     cursor: pointer;
@@ -108,10 +99,25 @@ a {
     text-transform: uppercase;
     cursor: pointer;
 }
+
 .nav-item:hover {
   color: blue;
 }
 
 .active {
   color: blue;
+}
+
+.ideaBtn{
+  background-color: #0B0909;
+  border-radius: 10px;
+  height: 43px;
+  width: 272px;
+  color: #FCE941;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+.ideaBtn:hover{
+  cursor: pointer;
 }
