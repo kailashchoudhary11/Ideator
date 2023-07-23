@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Form, useActionData } from "react-router-dom";
+import { Form, useActionData, redirect } from "react-router-dom";
 import '../styles/Register.css'
 
 export async function action({ request }) {
@@ -17,7 +17,7 @@ export async function action({ request }) {
       const values = Object.fromEntries(formData);
       return { errors, values };
     }
-    return res.data;
+    return redirect("/login")
   } catch (error) {
     return error.response.data;
   }
