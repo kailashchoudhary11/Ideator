@@ -67,7 +67,7 @@ body{
     width: 100%;
 }
 
-#err{
+#error{
   color: red;
   margin: 20px;
 }

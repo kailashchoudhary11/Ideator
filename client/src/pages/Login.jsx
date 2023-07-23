@@ -1,9 +1,7 @@
-import { Form, Link, useActionData } from "react-router-dom";
+import { Form, Link, useActionData, redirect, useNavigation } from "react-router-dom";
 import axios from "axios";
 import Cookies from 'js-cookie';
 import '../styles/Login.css'
-import { Form, Link, redirect, useActionData, useNavigation } from "react-router-dom";
-import './Login.css'
 import getAxios from "../utils/getAxios";
 
 
