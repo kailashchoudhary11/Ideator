@@ -60,10 +60,10 @@ Replace **my-feature-branch** with the name of your branch.
 
 Ideator is brought to you by a passionate and talented team dedicated to making hackathons more exciting and engaging. The core team members are:
 
-Kailash (@kailashchoudhary11) - Project Lead and Full-stack Developer
-Shubham (@MisterMickey) - Frontend Developer and UI/UX Designer
-Vidip (@Vidip-Ghosh) - MERN Developer
-Vinaya (@Vinaya-Sharma) - Database Specialist and DevOps
+<p> Kailash (@kailashchoudhary11) - Project Lead and Full-stack Developer</p>
+<p>Shubham (@MisterMickey) - Frontend Developer and UI/UX Designer</p>
+<p>Vidip (@Vidip-Ghosh) - MERN Developer</p>
+<p>Vinaya (@Vinaya-Sharma) - Database Specialist and DevOps</p>
 
 ### Thanks for Visiting!
 
