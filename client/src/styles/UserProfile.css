@@ -99,10 +99,9 @@
     width: 30vw;
 }
 
-#react-select-7-listbox{
+.css-lnmdiq5-menu{
     color: hsl(0, 0%, 20%);
     height: 15rem;
     overflow: hidden;
 }
-
 
