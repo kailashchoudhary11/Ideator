@@ -7,7 +7,9 @@ export default function Layout() {
   return (
     <div className="parentContainer">
       <Navbar />
-      <Outlet />
+      <div className="mainContent">
+        <Outlet /> {/* Render nested routes */}
+      </div>
       <Footer />
     </div>
   )

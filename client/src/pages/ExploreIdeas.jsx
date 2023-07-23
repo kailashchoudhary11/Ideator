@@ -97,16 +97,16 @@ export default function ExploreIdeas() {
         {actionData && (
           <div className="cardContainer">
             <h1>Here are some hackathon project ideas just for you!</h1>
-            <ul>
+            <div className="ideas-container">
               {actionData
                 .split(/[0-9]+\./g)
                 .filter(Boolean)
                 .map((idea, i) => (
-                  <div key={i}>
-                    <li>{idea}</li>
+                  <div className="idea-container" key={i}>
+                   {idea}
                   </div>
                 ))}
-            </ul>
+            </div>
           </div>
         )}
       </div>
