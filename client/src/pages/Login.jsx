@@ -1,29 +1,32 @@
 import { Form, Link, useActionData } from "react-router-dom";
 import axios from "axios";
 import Cookies from 'js-cookie';
+import '../styles/Login.css'
+import { Form, Link, redirect, useActionData, useNavigation } from "react-router-dom";
 import './Login.css'
+import getAxios from "../utils/getAxios";
+
 
 export async function action({ request }) {
   const formData = await request.formData();
-
-  const csrftoken = Cookies.get('csrftoken');
-  axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
-  axios.defaults.withCredentials = true;
+  const axios = getAxios()
   
   try {
     const res = await axios.post(
       "http://localhost:8000/api/login/",
       formData,
     );
-    console.log(res.data)
-    return res.data;
+    console.log(res.data);
+    return redirect("/profile");
   } catch (error) {
     return error.response.data;
   }
 }
 
 export default function Login() {
+  const navigation = useNavigation();
   const actionData = useActionData();
+
   return (    
     <Form method="post" className="form">
       <div className="formContent">
@@ -50,8 +53,8 @@ export default function Login() {
           </div>
         </div>
         <div id="btn">
-          <button id="loginbtn" type="submit">
-              Log In
+          <button disabled={navigation.state === "submitting" || navigation.state === "loading"} id="loginbtn" type="submit">
+              {navigation.state === "submitting" || navigation.state === "loading" ? "Logging In..." : "Log In"}
           </button>
           <Link to='/register'><button id="registerbtn" type="submit">Register</button></Link>
         </div>

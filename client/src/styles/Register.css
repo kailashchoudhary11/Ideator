@@ -1,0 +1,24 @@
+
+.regForm button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background-color: #0B0909;
+  width: 50%;
+  border: 0;
+  border-radius: 30px;
+  padding: 15px;
+  color: #D9D9D9;
+  font-size: 25px;
+  cursor: pointer;
+}
+#btn{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.error{
+  color: "red";
+  margin: "20px";
+}
