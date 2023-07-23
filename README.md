@@ -1,6 +1,6 @@
 <div align="center"><h1>Ideator</h1></div>
+<div align="center"><img src="./client/src/assets/images/logo.png" alt="Ideator Logo" width="100"></div>
 
-<img src="./client/src/assets/images/logo.png" alt="Ideator Logo" width="100">
 
 Welcome to Ideator, a powerful Hackathon Idea Generator Webapp built using React JS and Django! Ideator is designed to provide participants with creative and innovative project ideas for hackathons, helping them unleash their creativity and excel in hackathon competitions. Whether you are a seasoned hacker or a first-time participant, Ideator has got you covered with a plethora of project suggestions tailored to various domains and technologies.
 
