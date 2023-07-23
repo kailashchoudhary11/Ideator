@@ -5,7 +5,7 @@ import { Configuration, OpenAIApi } from "openai";
 import { useState } from "react";
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
@@ -18,10 +18,6 @@ export async function action({ request }) {
   const axios = getAxios();
   const res1 = await axios.get("http://localhost:8000/api/profile/");
   const userSkills = res1.data.skills;
-
-  // old approach - remove once ai is implemented
-  const data = { theme, includeSkills };
-  const res = await axios.post("http://localhost:8000/api/ideas/", data);
 
   // formatting data
   let themesList = ["WEB3", "Cyber Security", "IOT", "Machine Learning", "VR"];
@@ -108,7 +104,23 @@ export default function ExploreIdeas() {
           <button type="submit">Find Ideas</button>
         </Form>
       ) : (
-        <h1>{actionData}</h1>
+        <div>
+          <br />
+          <h1>Here are some hackathon project ideas just for you!</h1>
+          <br />
+          <br />
+          <ul>
+            {actionData
+              .split(/[0-9]+\./g)
+              .filter(Boolean)
+              .map((idea) => (
+                <div>
+                  <li>{idea}</li>
+                  <br />
+                </div>
+              ))}
+          </ul>
+        </div>
       )}
     </div>
   );
