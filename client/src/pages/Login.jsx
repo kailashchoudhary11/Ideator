@@ -45,7 +45,7 @@ export default function Login() {
             id="password"
             placeholder="Password"
           />
-          <div style={{ color: "red", margin: "20px" }}>
+          <div id="error">
             {actionData?.error}
           </div>
         </div>
