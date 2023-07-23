@@ -71,6 +71,8 @@ Ideator is brought to you by a passionate and talented team dedicated to making 
 - Vidip (@Vidip-Ghosh) - MERN Developer
 - Vinaya (@Vinaya-Sharma) - Database Specialist and DevOps
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Thanks for Visiting!
 
 We sincerely thank you for checking out Ideator. Your interest and support mean a lot to us. Happy hacking, and we hope Ideator helps you create amazing projects for your next hackathon!
