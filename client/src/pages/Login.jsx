@@ -1,6 +1,7 @@
 import { Form, Link, redirect, useActionData, useNavigation } from "react-router-dom";
 import '../styles/Login.css'
 import getAxios from "../utils/getAxios";
+import checkAuth from "../utils/checkAuth";
 
 
 export async function action({ request }) {
@@ -17,6 +18,13 @@ export async function action({ request }) {
   } catch (error) {
     return error.response.data;
   }
+}
+
+export async function loader() {
+  const isAuthenticated = await checkAuth();
+  console.log(isAuthenticated)
+  if (isAuthenticated) return redirect("/profile");
+  return null;
 }
 
 export default function Login() {

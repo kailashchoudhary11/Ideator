@@ -85,3 +85,7 @@ class SkillsView(APIView):
     skills = Skill.objects.all()
     serializer = SkillSerializer(skills, many=True)
     return Response(serializer.data)
+  
+class CheckAuth(APIView):
+  def get(self, request):
+    return Response({"isAuthenticated": request.user.is_authenticated})
