@@ -113,8 +113,8 @@ export default function ExploreIdeas() {
             {actionData
               .split(/[0-9]+\./g)
               .filter(Boolean)
-              .map((idea) => (
-                <div>
+              .map((idea, i) => (
+                <div key={i}>
                   <li>{idea}</li>
                   <br />
                 </div>
