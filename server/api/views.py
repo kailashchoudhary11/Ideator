@@ -77,7 +77,6 @@ class UserProfile(APIView):
     return Response({"success": "Skills Added"})
   
 class SkillsView(APIView):
-  
   permission_classes = [IsAuthenticated]
 
   def get(self, request):
@@ -86,7 +85,6 @@ class SkillsView(APIView):
     return Response(serializer.data)
 
 class ThemesView(APIView):
-  
   permission_classes = [IsAuthenticated]
 
   def get(self, request):

@@ -1,47 +1,37 @@
-import { Form, redirect, useActionData, useLoaderData } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { Form, useActionData, useNavigation } from "react-router-dom";
 import getAxios from "../utils/getAxios";
-import Select from "react-select";
-import { Configuration, OpenAIApi } from "openai";
-import { useState } from "react";
-
-const configuration = new Configuration({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+import getOpenAi from "../utils/getOpenAi";
 
 export async function action({ request }) {
+
   const formData = await request.formData();
-  const theme = formData.get("theme");
+  const theme = formData.get("theme") || "open theme";
   const includeSkills = formData.get("skills") === "on" ? true : false;
 
-  // gets users skills
-  const axios = getAxios();
-  const res1 = await axios.get("http://localhost:8000/api/profile/");
-  const userSkills = res1.data.skills;
-
-  // formatting data
-  let themesList = ["WEB3", "Cyber Security", "IOT", "Machine Learning", "VR"];
+  let userSkills = [];
   let content1;
   let content2;
 
-  let usersSkillsList = [];
-  userSkills.map((element) => {
-    usersSkillsList.push(element.name);
-  });
 
   if (includeSkills) {
-    content1 =
-      "You will be provided with a list of skills and themes, and your task is to generate hackathon project ideas based off of this. ";
-    content2 = `Dev skills: ${usersSkillsList} & theme: ${
-      themesList[theme - 1]
-    }`;
+    const axios = getAxios();
+    const res = await axios.get("http://localhost:8000/api/profile/");
+    res.data.skills.map((element) => {
+      userSkills.push(element.name);
+    });
+
+    content1 = "You will be provided with a list of skills and a theme, and your task is to generate hackathon project ideas based off those skills and theme ";
+    content2 = `Dev skills: ${userSkills} & theme: ${theme}`;
+
   } else {
-    content1 =
-      "You will be provided with a theme, and your task is to generate hackathon project ideas related to that theme.";
-    content2 = `Dev skills: ${usersSkillsList} & theme: ${
-      themesList[theme - 1]
-    }`;
+
+    content1 = "You will be provided with a theme, and your task is to generate hackathon project ideas related to that theme.";
+    content2 = `Theme: ${theme}`;
+
   }
+
+  const openai = getOpenAi();
 
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
@@ -62,48 +52,41 @@ export async function action({ request }) {
     presence_penalty: 0,
   });
 
+  console.log(response.data)
   console.log(response.data.choices[0].message.content);
-
   return response.data.choices[0].message.content;
-}
-
-export async function loader() {
-  try {
-    const axios = getAxios();
-
-    const res = await axios.get("http://localhost:8000/api/themes/");
-    console.log("All themes", res.data);
-    return res.data;
-  } catch (error) {
-    if (error.response.status === 403) {
-      return redirect("/login");
-    }
-    console.log(error);
-  }
-  return null;
 }
 
 export default function ExploreIdeas() {
   const actionData = useActionData();
 
-  const data = useLoaderData();
-  const options = data?.map((theme) => ({
-    value: theme.id,
-    label: theme.name,
-  }));
+  const form = useRef(Form);
+  const navigation = useNavigation();
+
+  useEffect(
+    function resetFormOnSuccess() {
+      if (navigation.state === "idle" && actionData) {
+        form.current?.reset();
+      }
+    },
+    [navigation.state, actionData]
+  );
 
   return (
     <div>
-      {!actionData ? (
-        <Form method="post">
-          <Select options={options} name="theme" />
-          <div>
-            <input type="checkbox" name="skills" id="skills" />
-            <label htmlFor="skills">Provide Idea based on my skills</label>
-          </div>
-          <button type="submit">Find Ideas</button>
-        </Form>
-      ) : (
+
+      <Form method="post" ref={form}>
+        <div>
+          <input type="text" name="theme" id="theme" placeholder="Theme" />
+          <label htmlFor="skills">Theme</label>
+        </div>
+        <div>
+          <input type="checkbox" name="skills" id="skills" />
+          <label htmlFor="skills">Provide Idea based on my skills</label>
+        </div>
+        <button type="submit">Find Ideas</button>
+      </Form>
+      {actionData &&
         <div>
           <br />
           <h1>Here are some hackathon project ideas just for you!</h1>
@@ -121,7 +104,7 @@ export default function ExploreIdeas() {
               ))}
           </ul>
         </div>
-      )}
+      }
     </div>
   );
 }
