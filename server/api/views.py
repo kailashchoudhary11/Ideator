@@ -11,14 +11,13 @@ from rest_framework.views import APIView
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def endpoints(request):
   data = [
     "/api/register",
     "/api/login",
     "/api/idea",
   ]
-  return Response(data)
+  return Response(data, status=status.HTTP_200_OK)
 
 class RegisterUser(APIView):
   def post(self, request):
