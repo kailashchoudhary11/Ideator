@@ -63,7 +63,19 @@
 
 .skills {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+}
+
+.skills-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	max-width: 70%;
+}
+
+.edit-skills-btn {
+	min-height: 3rem;
+	cursor: pointer;
 }
 
 .updateBtn,

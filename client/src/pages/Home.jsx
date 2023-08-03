@@ -11,7 +11,7 @@ export default function Home() {
           <Link to='/ideas'><button className='btn'>Explore Ideas</button></Link>
       </div>
       <div className="d2">
-        <img src={img} alt="" />
+        <img src={img} alt="eclipse" />
       </div>
     </div>
   )

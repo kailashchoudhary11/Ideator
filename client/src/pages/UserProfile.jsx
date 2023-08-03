@@ -28,10 +28,8 @@ export async function loader() {
     const res = await axios.get("http://localhost:8000/api/profile/");
     const userSkills = res.data.skills;
     const userData = res.data;
-    console.log("user skills", userSkills);
 
     const allSkillsRes = await axios.get("http://localhost:8000/api/skills/");
-    console.log("All skills", allSkillsRes.data);
     const allSkills = allSkillsRes.data;
 
     return { userSkills, allSkills, userData };
@@ -39,7 +37,6 @@ export async function loader() {
     if (error.response.status === 403) {
       return redirect("/login");
     }
-    console.log(error);
   }
   return null;
 }
@@ -104,12 +101,15 @@ export default function UserProfile() {
             {!allowEdit ? (
               <li className="skills">
                 <span className="leftDataItem">Skills:</span>{" "}
+                <span className="skills-container">
                 {userSkills?.map((skill, i) => (
                   <span className="skill" key={i}>
                     {skill.name}
                   </span>
                 ))}
+                </span>
                 <button
+                className="edit-skills-btn"
                   onClick={() => {
                     setAllowEdit(true);
                   }}

@@ -9,11 +9,10 @@ export async function action({ request }) {
   const axios = getAxios()
   
   try {
-    const res = await axios.post(
+    await axios.post(
       "http://localhost:8000/api/login/",
       formData,
     );
-    console.log(res.data);
     return redirect("/profile");
   } catch (error) {
     return error.response.data;
@@ -22,7 +21,6 @@ export async function action({ request }) {
 
 export async function loader() {
   const isAuthenticated = await checkAuth();
-  console.log(isAuthenticated)
   if (isAuthenticated) return redirect("/profile");
   return null;
 }

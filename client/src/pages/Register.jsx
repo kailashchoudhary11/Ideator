@@ -10,7 +10,6 @@ export async function action({ request }) {
       formData,
     );
 
-    console.log(res.data);
 
     if (res.data?.errors) {
       const { errors } = res.data;

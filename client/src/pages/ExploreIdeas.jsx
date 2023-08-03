@@ -50,8 +50,6 @@ export async function action({ request }) {
       presence_penalty: 0,
     });
 
-    console.log(response.data)
-    console.log(response.data.choices[0].message.content);
     return response.data.choices[0].message.content;
   }
 
@@ -90,7 +88,7 @@ export default function ExploreIdeas() {
           <input type="text" name="theme" id="theme" placeholder="Enter Theme" />
         </div>
         <div>
-          <button type="submit" className="ideaSubmitBtn">Find Ideas</button>
+          <button disabled={navigation.state == "submitting"} type="submit" className="ideaSubmitBtn">{navigation.state == "submitting" ? "Finding..." : "Find Ideas"}</button>
         </div>
       </div>
       <div>
